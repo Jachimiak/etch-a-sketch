@@ -1,0 +1,35 @@
+.sketch-border {
+    width: 801px;
+    height: 801px;
+    border: 2px solid black;
+}
+
+.sketch-screen {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 800px;
+    height: 800px;
+    background-color: #f3f3f3;
+    border-top: 1px solid rgb(165, 165, 165);
+    border-left: 1px solid rgb(165, 165, 165);
+}
+
+.sketch-screen>div {
+    height: auto;
+    flex: 1 0 auto;
+
+    /* make columns vertical flexboxes */
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.sketch-screen>div:last-child {
+    border: none;
+}
+
+.sketch-screen>div>* {
+  /* make rows evenly distributed */
+    flex: 1;
+}
