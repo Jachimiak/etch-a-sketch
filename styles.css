@@ -1,6 +1,8 @@
+
+
 .sketch-border {
-    width: 801px;
-    height: 801px;
+    width: 601px;
+    height: 601px;
     border: 2px solid black;
 }
 
@@ -8,8 +10,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 800px;
-    height: 800px;
+    width: 600px;
+    height: 600px;
     background-color: #f3f3f3;
     border-top: 1px solid rgb(165, 165, 165);
     border-left: 1px solid rgb(165, 165, 165);
@@ -25,11 +27,13 @@
     
 }
 
-.sketch-screen>div:last-child {
-    border: none;
-}
-
 .sketch-screen>div>* {
   /* make rows evenly distributed */
     flex: 1;
+}
+
+.row {
+    background-color: white;
+    color: rgba(0, 0, 0, 10)
+
 }
