@@ -1,8 +1,7 @@
-
 // Populate the Grid
-
-let color = "black";
+let color = "rainbow";
 let fade = false;
+let numBoxesChosen = 16
 
 function makeGrid(size) {
     let screen = document.querySelector(".sketch-screen");
@@ -25,12 +24,49 @@ function makeGrid(size) {
     }
 }
 
-makeGrid(16);
+// Make initial grid
+makeGrid(16)
+
+// Choose size of grid
+const boxesBtn = document.getElementById("boxes-btn");
+const input = document.getElementById("num-of-boxes");
+
+boxesBtn.addEventListener("click", () => {
+    console.log("Input value:", input.value);
+
+    let screen = document.querySelector(".sketch-screen");
+    screen.innerHTML = "";
+
+    numBoxesChosen = parseInt(input.value);
+    console.log("Parsed number:", numBoxesChosen);
+
+    if (!isNaN(numBoxesChosen) && numBoxesChosen > 0 && numBoxesChosen <101) {
+        makeGrid(numBoxesChosen);
+    } else {
+        alert("Please enter a valid number.");
+    }
+});
+
+
+// Listen for color change radio button switch
+let colorGroup = document.getElementsByName('color-and-black');
+
+colorGroup.forEach(radio => {
+    radio.addEventListener('change', function () {
+        if (this.checked) {
+            resetBoard();
+            color = this.value;
+            console.log("Color changed to:", color);
+        }
+    });
+});
+
+
 
 // Switch between black and color versions.
-function changeBlackOrColor(){
+function changeBlackOrColor() {
     if (color === "black") {
-        this.style.background = "black";
+        this.style.backgroundColor = "black";
     } else if (color === "rainbow") {
         this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
     }
@@ -49,12 +85,17 @@ function chooseBlackOrColor(choice) {
     }
 } */
 
+const resetBrd = document.getElementById("reset-board");
+
+resetBrd.addEventListener('click', () => {
+    resetBoard();
+})
+
 // Clear the board to white.
 function resetBoard() {
-    let container = document.querySelector(".sketch-container");
-    let squares = container.querySelector("div");
+    let squares = document.querySelectorAll(".row");
     squares.forEach((div) => (div.style.backgroundColor = "white"));
-}
+} 
 
 
 

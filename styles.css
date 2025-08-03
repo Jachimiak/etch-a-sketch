@@ -1,4 +1,10 @@
 
+.center-content {
+    max-width: 100%;  
+    display: flex;
+    justify-content: center;  
+}
+
 
 .sketch-border {
     width: 601px;
