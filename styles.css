@@ -1,10 +1,29 @@
+* {
+    padding: 0;
+
+}
+
+.header {
+    text-align: center;
+}
+
+.big-title {
+    font-family: VT323, sans-serif;
+    font-size: 4rem;
+    margin-bottom: .3em;
+    
+}
+
+.header p {
+    margin-bottom: .5em;
+}
 
 .center-content {
     max-width: 100%;  
     display: flex;
     justify-content: center;  
+    margin-top: 1em;
 }
-
 
 .sketch-border {
     width: 601px;

@@ -6,10 +6,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <h1>Etch-a-Sketch</h1>
+    <div class="header">
+        <h1 class="big-title">Etch-a-Sketch</h1>
         
         <p><label for="num-of-boxes">Number of Squares Per Side (1-100): </label>  <input type="number" id="num-of-boxes" name ="num-of-boxes" min="1" max="100"> <button id="boxes-btn" type="submit">Enter</button></p>
         <p>Rainbow or Black and White Boxes: <input type="radio" id="color" name="color-and-black" value="rainbow"><label for="color" value="rainbow">Color</label> <input type="radio" id="bw" name="color-and-black" value="black" checked /><label for="bw">Black and White</label></p>
