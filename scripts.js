@@ -1,5 +1,5 @@
 // Global Variables
-let color = "rainbow";
+let color = "black";
 let fade = false;
 let numBoxesChosen = 16
 let fadeUpColor = 0.1;
