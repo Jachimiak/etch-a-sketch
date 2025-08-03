@@ -1,8 +1,10 @@
-// Populate the Grid
+// Global Variables
 let color = "rainbow";
 let fade = false;
 let numBoxesChosen = 16
+let fadeUpColor = 0.1;
 
+// Populate the Grid
 function makeGrid(size) {
     let screen = document.querySelector(".sketch-screen");
     for (let i = 0; i < size; i++) {
@@ -17,6 +19,8 @@ function makeGrid(size) {
             if (fade === false) {
                 row.addEventListener('mouseover', changeBlackOrColor);
             } else if (fade === true) {
+                // row.addEventListener('mouseover', changeBlackOrColor);
+                row.setAttribute('data-opacity', '0');
                 row.addEventListener('mouseover', fadeToDark);
             }
         }
@@ -62,6 +66,24 @@ colorGroup.forEach(radio => {
 });
 
 
+// Listen for opacity fade radio button switch
+let opacityFade = document.getElementsByName('opacity');
+
+opacityFade.forEach(radio => {
+    radio.addEventListener('change', function () {
+        if (this.checked) {
+            resetBoard();
+            fade = this.value === "true";
+            console.log("Color changed to:", fade);
+
+            let screen = document.querySelector(".sketch-screen");
+            screen.innerHTML = "";  // Clear old grid
+            makeGrid(numBoxesChosen);
+        }
+    });
+});
+
+
 
 // Switch between black and color versions.
 function changeBlackOrColor() {
@@ -72,18 +94,26 @@ function changeBlackOrColor() {
     }
 }
 
-// Accept choice from web UI.
-function chooseBlackOrColor(choice) {
-    color = choice;
-}
-
 // Choice to fade to dark.
-/* function fadeToDark() {
+function fadeToDark() {
     if (color === "black" && fade === true) {
-        let fadeUpColor = 0.05;
-        this.style.backgroundColor = "rgba(0, 0, 0, " + fadeUpColor + ")";
+        let currentOpacity = parseFloat(this.getAttribute('data-opacity')) || 0;
+        if (currentOpacity < 1) {
+            currentOpacity += 0.1;
+            if (currentOpacity > 1) currentOpacity = 1;
+            this.setAttribute('data-opacity', currentOpacity);
+            this.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
+        }
+    } else if (color === "rainbow" && fade === true) {
+        let currentOpacity = parseFloat(this.getAttribute('data-opacity')) || 0;
+        if (currentOpacity < 1) {
+            currentOpacity += 0.1;
+            if (currentOpacity > 1) currentOpacity = 1;
+            this.setAttribute('data-opacity', currentOpacity);
+            this.style.backgroundColor = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, ${currentOpacity})`;
+        }
     }
-} */
+}
 
 const resetBrd = document.getElementById("reset-board");
 
@@ -94,9 +124,12 @@ resetBrd.addEventListener('click', () => {
 // Clear the board to white.
 function resetBoard() {
     let squares = document.querySelectorAll(".row");
-    squares.forEach((div) => (div.style.backgroundColor = "white"));
+    squares.forEach((div) => {
+        div.style.backgroundColor = "white";
+        div.setAttribute('data-opacity', '0');
+    })
+    fadeUpColor = 0.1;
 } 
-
 
 
 
